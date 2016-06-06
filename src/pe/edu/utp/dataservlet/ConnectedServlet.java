@@ -43,9 +43,11 @@ public class ConnectedServlet extends HttpServlet {
                 stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery("select employee_id, first_name, last_name, department_name\n" +
                         "from employees a ,departments d,jobs  j\n" +
-                        "where  a.department_id=d.department_id and a.job_id=j.job_id");
+                        "where  a.department_id=d.department_id and a.job_id=j.job_id\n"+
+                        "order by employee_id");
 
                 if(rs != null){
+                    out.println("<center>");
                     out.println("<p>Lista de Empleados</p>");
                     out.println("<table border='1'>");
                     out.println("<tr>");
@@ -65,6 +67,7 @@ public class ConnectedServlet extends HttpServlet {
                         out.println("</tr>");
                     }
                     out.println("</table>");
+                    out.println("</center>");
 
                 }else{
                     out.println("Not lucky this time");
